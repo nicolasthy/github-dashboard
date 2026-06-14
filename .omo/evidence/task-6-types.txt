@@ -1,0 +1,67 @@
+# Task 6: Shared Types Package Contents
+
+## Files Created
+
+### packages/types/src/domain.ts
+- PullRequest type (github_pr_id, node_id, number, repo_id, author_user_id, state, draft, title, head_sha, created_at, updated_at, closed_at, merged_at, html_url, last_event_at)
+- Repository type (repo_id, owner_login, name, active, added_at)
+- Person type (user_id, login, avatar_url, first_seen_at)
+- Review type (review_id, pr_id, reviewer_user_id, state, submitted_at)
+- DeliveryLog type (delivery_id, event, action, received_at, processed_at, outcome)
+- RepoState type (repo_id, last_reconciled_at)
+- ApiToken type (token_id, hash, label, created_at, last_used_at)
+
+### packages/types/src/branded.ts
+- GitHubUserId branded type with asUserId() constructor
+- GitHubRepoId branded type with asRepoId() constructor
+- GitHubPrId branded type with asPrId() constructor
+- GitHubReviewId branded type with asReviewId() constructor
+- All constructors validate positive integers
+
+### packages/types/src/enums.ts
+- PrState = "open" | "closed"
+- ReviewState = "APPROVED" | "CHANGES_REQUESTED" | "COMMENTED" | "DISMISSED"
+- DeliveryOutcome = "applied" | "dedup" | "stale" | "rejected" | "ignored"
+
+### packages/types/src/github.ts
+- GitHubUser type (id, login, avatar_url)
+- GitHubRepository type (id, name, owner)
+- GitHubPullRequest type (id, node_id, number, state, draft, title, user, head, created_at, updated_at, closed_at, merged_at, html_url)
+- GitHubReview type (id, user, state, submitted_at)
+- PullRequestEvent type (action, pull_request, repository)
+- PullRequestReviewEvent type (action, review, pull_request, repository)
+- RepositoryRenamedEvent type (action, repository)
+
+### packages/types/src/api.ts
+- PullRequestListItem type (github_pr_id, number, state, draft, title, head_sha, created_at, updated_at, closed_at, merged_at, html_url, last_event_at, repo_id, repo_name, owner_login, author_user_id, author_login, author_avatar_url)
+- ReviewWithReviewer type (review_id, state, submitted_at, reviewer)
+- PullRequestDetail type (extends PullRequestListItem with reviews array)
+- RepoSummary type (repo_id, owner_login, name, active, added_at, pr_count, open_count)
+
+### packages/types/src/index.ts
+- Barrel file with single biome-ignore directive on runtime export
+- Named exports only (no export *)
+- Alphabetically sorted exports per biome organizeImports
+
+### packages/types/src/__tests__/brand.test.ts
+- Test: asUserId creates valid branded type
+- Test: asUserId rejects non-positive integers
+- Test: brand types are incompatible at compile time (with @ts-expect-error)
+
+## Verification Results
+
+✓ bun turbo typecheck: 0 errors
+✓ bun turbo check (types only): 0 errors, 0 warnings
+✓ bun turbo test: 6 tests pass (3 types + 3 backend)
+✓ No `: any` or `as any` found
+✓ biome-ignore only in index.ts
+✓ No `export *` found
+✓ All imports use correct module syntax (no .ts extensions)
+
+## Package.json Updates
+
+Added "test": "bun test" script to packages/types/package.json
+
+## Commit
+
+feat(types): @repo/types domain + api shapes

@@ -8,24 +8,56 @@
       "plan_name": "github-pr-tracker",
       "status": "active",
       "started_at": "2026-06-14T09:16:20.965Z",
-      "updated_at": "2026-06-14T09:16:20.965Z",
-      "session_ids": ["opencode:ses_13a950db1ffeki188y0QjCOKre"],
+      "updated_at": "2026-06-14T09:25:34.320Z",
+      "session_ids": [
+        "opencode:ses_13a950db1ffeki188y0QjCOKre"
+      ],
       "session_origins": {
         "opencode:ses_13a950db1ffeki188y0QjCOKre": "direct"
       },
       "agent": "atlas",
-      "task_sessions": {}
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Monorepo scaffolding (Turborepo + Bun workspaces) + Biome + strict tsconfig + lefthook",
+          "session_id": "opencode:ses_13a8da4bdffeZCSe89IBHRjsXR",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-06-14T09:23:15.987Z",
+          "status": "completed",
+          "updated_at": "2026-06-14T09:25:34.320Z",
+          "ended_at": "2026-06-14T09:25:34.320Z",
+          "elapsed_ms": 138333
+        }
+      }
     }
   },
   "active_plan": "/Users/nicolas.thiry/Developer/personal/github-dashboard/.omo/plans/github-pr-tracker.md",
   "started_at": "2026-06-14T09:16:20.965Z",
   "status": "active",
-  "updated_at": "2026-06-14T09:16:20.965Z",
-  "session_ids": ["opencode:ses_13a950db1ffeki188y0QjCOKre"],
+  "updated_at": "2026-06-14T09:25:34.320Z",
+  "session_ids": [
+    "opencode:ses_13a950db1ffeki188y0QjCOKre"
+  ],
   "session_origins": {
     "opencode:ses_13a950db1ffeki188y0QjCOKre": "direct"
   },
   "plan_name": "github-pr-tracker",
-  "task_sessions": {},
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Monorepo scaffolding (Turborepo + Bun workspaces) + Biome + strict tsconfig + lefthook",
+      "session_id": "opencode:ses_13a8da4bdffeZCSe89IBHRjsXR",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "started_at": "2026-06-14T09:23:15.987Z",
+      "status": "completed",
+      "updated_at": "2026-06-14T09:25:34.320Z",
+      "ended_at": "2026-06-14T09:25:34.320Z",
+      "elapsed_ms": 138333
+    }
+  },
   "agent": "atlas"
 }

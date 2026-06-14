@@ -303,7 +303,7 @@ Max Concurrent: 7 (Wave 1)
 
 ## TODOs
 
-- [ ] 1. Monorepo scaffolding (Turborepo + Bun workspaces) + Biome + strict tsconfig + lefthook
+- [x] 1. Monorepo scaffolding (Turborepo + Bun workspaces) + Biome + strict tsconfig + lefthook
 
   **What to do**:
 

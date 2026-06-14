@@ -28,6 +28,7 @@
     "lineEnding": "lf"
   },
   "javascript": {
+    "globals": ["Bun"],
     "formatter": {
       "quoteStyle": "double",
       "semicolons": "always",

@@ -1,0 +1,82 @@
+# Encryption
+
+> Canonical reference for the SQLCipher binding used by `@repo/backend`. Owner: backend.
+> Locked by T2 spike (`apps/backend/bin/spike-sqlcipher.ts`).
+
+## Stack
+
+| Layer | Choice | Pinned at |
+|------|--------|-----------|
+| Binding | `better-sqlite3-multiple-ciphers` | `12.10.0` (exact, no caret) |
+| Runtime | Bun on darwin-arm64 | `bun rebuild better-sqlite3-multiple-ciphers` in `apps/backend` postinstall |
+| Cipher  | SQLCipher 4 (`cipher_compatibility = 4`) | default page size, default HMAC |
+| Key     | Raw 32-byte hex blob via `PRAGMA key = x'…'` | **no KDF, no passphrase** |
+
+## Canonical open sequence (LOCKED)
+
+Every code path that opens an encrypted database **must** run these calls in this exact order:
+
+```ts
+const db = new Database(path);                  // 1. open handle
+db.pragma(`key = x'${hexKey}'`);                // 2. install raw 32-byte key (no KDF)
+db.pragma("cipher_compatibility = 4");          // 3. pin SQLCipher 4 page format
+if (filePath) db.pragma("journal_mode = WAL");  // 4. WAL only after key, file-backed only
+db.prepare("SELECT 1").get();                   // 5. force header decrypt → throws on wrong key
+```
+
+Rules:
+
+1. **`new Database(path)` first.** Do not pass key options in the constructor — the binding accepts a `key` option but it routes through the KDF path, which is exactly what we are avoiding.
+2. **Key pragma second, before *any* other pragma or query.** SQLCipher will not retroactively decrypt pages that were touched before the key was installed.
+3. **`cipher_compatibility = 4` third.** This pins SQLCipher 4 defaults (page size 4096, HMAC SHA-512, 256000 iterations — ignored when using a raw key but still required to lock the page format).
+4. **`journal_mode = WAL` fourth, file-backed only.** WAL is illegal on `:memory:` databases (the spike asserts this by skipping it for the in-memory smoke). WAL must be enabled **after** the key pragma; enabling it first writes an unencrypted WAL header.
+5. **First `SELECT 1` fifth.** This is the smoke check: it forces the binding to decrypt page 1. If the key is wrong, this is where `SQLITE_NOTADB` ("file is not a database") surfaces. **Without this probe, a wrong key silently looks healthy until the first real query.**
+
+## Raw hex key contract
+
+- Keys are **32 raw bytes**, encoded as **64 lowercase hex characters**.
+- Wire format inside the pragma is the SQLite blob literal: `x'<64 hex chars>'` (single quotes, lowercase `x`).
+- **Never pass a passphrase string.** `PRAGMA key = 'something'` would silently run PBKDF2 over `something`, which is not the contract this app commits to.
+- The spike uses `"00".repeat(31) + "11"` purely as a deterministic test fixture. The real key in production comes from `PR_TRACKER_KEY` (see future task T-keying).
+
+## Wrong-key behaviour
+
+Opening a SQLCipher database with the wrong key does **not** throw at `pragma("key = …")`. The key pragma only stores bytes. The error surfaces on the **first page-touching operation**, which is why step 5 in the sequence above is mandatory:
+
+- The binding raises an `Error` whose `code` is `"SQLITE_NOTADB"`.
+- The message is the unhelpful `"file is not a database"` — see the [issues notepad](../.omo/notepads/github-pr-tracker/issues.md) for the gotcha.
+- The DB module is expected to wrap this case in a domain-specific `WrongKeyError` so callers do not have to string-match on SQLite codes (deferred to T-db-wrapper).
+
+## What the T2 spike proves
+
+`apps/backend/bin/spike-sqlcipher.ts` is the executable contract for everything above. Run with:
+
+```bash
+bun --filter @repo/backend run spike:sqlcipher
+```
+
+Expected output (exit 0):
+
+```
+── memory DB smoke ──
+{ v: 1 }
+── file DB persistence + reopen ──
+REOPEN OK
+── wrong key rejection ──
+  caught: code=SQLITE_NOTADB message="…"
+WRONG KEY REJECTED
+── all spike checks passed ──
+```
+
+The spike covers:
+
+- `:memory:` open + key + `cipher_compatibility=4` + `SELECT 1` + round-trip insert/select.
+- File-backed open with WAL, insert, close, **reopen with same key**, read row back (proves on-disk persistence with encryption).
+- File-backed open with a **different** key — confirms the binding throws and surfaces `SQLITE_NOTADB`.
+
+## Things deferred (do not add to the spike)
+
+- WAL/checkpoint tuning, `synchronous=NORMAL`, `temp_store=MEMORY` → owned by T7 (DB module hardening).
+- `PRAGMA foreign_keys = ON` → owned by the schema/migrations task.
+- Key rotation (`rekey`) → must switch to `journal_mode = DELETE` before rekey; out of scope until rotation is needed.
+- KMS / OS keychain integration for `PR_TRACKER_KEY` → out of scope; key sourcing lives in the config layer.
