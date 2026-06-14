@@ -1148,7 +1148,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(webhook): hmac sha256 verifier`.
 
-- [ ] 9. Delivery dedup store
+- [x] 9. Delivery dedup store
 
   **What to do**:
   - Create `src/webhook/dedup.ts` exporting `recordDelivery(db, deliveryId, event, action): 'new' | 'dup'`.
@@ -1185,7 +1185,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(webhook): delivery dedup`.
 
-- [ ] 10. pull_request handler (7 actions + repo allowlist + ordering fence + ghost guard)
+- [x] 10. pull_request handler (7 actions + repo allowlist + ordering fence + ghost guard)
 
   **What to do**:
   - Create `apps/backend/src/handlers/pull-request.ts` exporting `handlePullRequest(db, payload): DeliveryOutcome`.
@@ -1278,7 +1278,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(handlers): pull_request with repo allowlist, fence, ghost guard`.
 
-- [ ] 11. pull_request_review handler
+- [x] 11. pull_request_review handler
 
   **What to do**:
   - Create `src/handlers/pull-request-review.ts` exporting `handlePullRequestReview(db, payload): DeliveryOutcome`.
@@ -1317,7 +1317,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(handlers): pull_request_review`.
 
-- [ ] 12. repository.renamed handler
+- [x] 12. repository.renamed handler
 
   **What to do**:
   - Create `src/handlers/repository.ts` exporting `handleRepository(db, payload): DeliveryOutcome`.
@@ -1538,7 +1538,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(reconcile): startup reconciliation, state=all, drift fallback`.
 
-- [ ] 16. tracked-repos.yaml loader + DB sync
+- [x] 16. tracked-repos.yaml loader + DB sync
 
   **What to do**:
   - Create `apps/backend/src/config/tracked-repos.ts` exporting `loadTrackedRepos(path: string): TrackedRepoConfig`.
@@ -1677,7 +1677,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(config): hot-reload watcher for tracked-repos`.
 
-- [ ] 18. Argon2id token store + bin/token CLI
+- [x] 18. Argon2id token store + bin/token CLI
 
   **What to do**:
   - Create `src/auth/token-store.ts` exporting `issueToken(db, label): { token_id, token_plaintext }` (plaintext returned ONCE, never stored), `verifyToken(db, plaintext): Promise<ApiToken | null>`, `revokeToken(db, token_id)`.
