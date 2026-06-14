@@ -7,7 +7,8 @@
     "GITHUB_ORG",
     "TRACKED_REPOS_PATH",
     "PR_TRACKER_DB",
-    "LOG_STDERR"
+    "LOG_STDERR",
+    "LOG_PATH"
   ],
   "tasks": {
     "build": {

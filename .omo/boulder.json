@@ -8,7 +8,7 @@
       "plan_name": "github-pr-tracker",
       "status": "active",
       "started_at": "2026-06-14T09:16:20.965Z",
-      "updated_at": "2026-06-14T09:25:34.320Z",
+      "updated_at": "2026-06-14T10:14:57.026Z",
       "session_ids": [
         "opencode:ses_13a950db1ffeki188y0QjCOKre"
       ],
@@ -29,6 +29,19 @@
           "updated_at": "2026-06-14T09:25:34.320Z",
           "ended_at": "2026-06-14T09:25:34.320Z",
           "elapsed_ms": 138333
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "SQLCipher-under-Bun smoke spike",
+          "session_id": "opencode:ses_13a8c1e28ffeBSrP8R8JD9iVqM",
+          "agent": "Sisyphus-Junior",
+          "category": "deep",
+          "updated_at": "2026-06-14T10:14:57.026Z",
+          "started_at": "2026-06-14T09:44:01.640Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T10:14:57.026Z",
+          "elapsed_ms": 1855386
         }
       }
     }
@@ -36,7 +49,7 @@
   "active_plan": "/Users/nicolas.thiry/Developer/personal/github-dashboard/.omo/plans/github-pr-tracker.md",
   "started_at": "2026-06-14T09:16:20.965Z",
   "status": "active",
-  "updated_at": "2026-06-14T09:25:34.320Z",
+  "updated_at": "2026-06-14T10:14:57.026Z",
   "session_ids": [
     "opencode:ses_13a950db1ffeki188y0QjCOKre"
   ],
@@ -57,6 +70,19 @@
       "updated_at": "2026-06-14T09:25:34.320Z",
       "ended_at": "2026-06-14T09:25:34.320Z",
       "elapsed_ms": 138333
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "SQLCipher-under-Bun smoke spike",
+      "session_id": "opencode:ses_13a8c1e28ffeBSrP8R8JD9iVqM",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-06-14T10:14:57.026Z",
+      "started_at": "2026-06-14T09:44:01.640Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T10:14:57.026Z",
+      "elapsed_ms": 1855386
     }
   },
   "agent": "atlas"

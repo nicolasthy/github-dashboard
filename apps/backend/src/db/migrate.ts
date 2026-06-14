@@ -1,3 +1,4 @@
+import { Database } from "bun:sqlite";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -41,22 +42,11 @@ export function runMigrations(db: SqlDb): void {
   }
 }
 
-export async function main(): Promise<void> {
-  const { default: Database } = await import("better-sqlite3-multiple-ciphers");
-
-  const key = process.env["PR_TRACKER_KEY"] ?? "";
-  if (!/^[0-9a-fA-F]{64}$/.test(key)) {
-    process.stderr.write("PR_TRACKER_KEY must be exactly 64 hex characters\n");
-    process.exit(1);
-  }
-
+export function main(): void {
   const dbPath = process.env["PR_TRACKER_DB"] ?? "data/tracker.db";
-  const db = new Database(dbPath);
-  db.pragma(`key = x'${key}'`);
-  db.pragma("cipher_compatibility = 4");
-  db.pragma("journal_mode = WAL");
-  db.pragma("foreign_keys = ON");
-  db.prepare("SELECT 1").get(); // verify key is accepted
+  const db = new Database(dbPath, { create: true });
+  db.exec("PRAGMA journal_mode = WAL");
+  db.exec("PRAGMA foreign_keys = ON");
 
   runMigrations(db as unknown as SqlDb);
   process.stdout.write("Migrations applied successfully\n");
@@ -64,8 +54,10 @@ export async function main(): Promise<void> {
 }
 
 if (import.meta.main) {
-  await main().catch((e: unknown) => {
+  try {
+    main();
+  } catch (e: unknown) {
     process.stderr.write(String(e) + "\n");
     process.exit(1);
-  });
+  }
 }

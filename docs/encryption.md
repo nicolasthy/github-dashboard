@@ -1,3 +1,19 @@
+# SQLCipher / Encryption at Rest
+
+## v1 Decision: bun:sqlite (SQLCipher deferred)
+
+**Status**: SQLCipher encryption deferred to v2.
+
+**Reason**: `better-sqlite3-multiple-ciphers@12.10.0` uses V8 C++ APIs (`NODE_MODULE_INIT`, `node.h`) that Bun's JavaScriptCore runtime does not implement. Bun's loader blocks the `.node` binding with `ERR_DLOPEN_FAILED`. This affects all Bun 1.x versions on all platforms.
+
+**v1 approach**: Use `bun:sqlite` (Bun's native SQLite). The DB file is protected by OS-level disk encryption (macOS FileVault / Linux LUKS). No application-level encryption in v1.
+
+**v2 path**: When Bun adds native addon support (tracked in oven-sh/bun#4290) or when `bun:sqlite` gains SQLCipher support (oven-sh/bun#11397), upgrade `connection.ts` to add the PRAGMA key sequence. The interface contract (`open()`, `close()`, `selfTest()`) is preserved — only the internals change.
+
+**Evidence**: `.omo/evidence/task-2-sqlcipher-spike.txt`
+
+---
+
 # Encryption
 
 > Canonical reference for the SQLCipher binding used by `@repo/backend`. Owner: backend.

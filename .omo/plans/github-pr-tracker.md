@@ -765,7 +765,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `chore: monorepo scaffolding (turborepo + bun workspaces + biome + strict tsconfig)`.
 
-- [ ] 2. SQLCipher-under-Bun smoke spike
+- [x] 2. SQLCipher-under-Bun smoke spike
 
   **What to do**:
   - Create `bin/spike-sqlcipher.ts` that: opens `:memory:` DB via `better-sqlite3-multiple-ciphers`, runs `pragma("key = x'" + "00".repeat(31) + "11'")`, `pragma("cipher_compatibility = 4")`, creates a table, inserts and selects a row, closes, reopens, asserts row persists.
@@ -813,7 +813,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(db): sqlcipher binding spike`.
 
-- [ ] 3. Cloudflared resilience spike
+- [x] 3. Cloudflared resilience spike
 
   **What to do**:
   - Create `bin/spike-cloudflared.ts` + `docs/spikes/cloudflared.md`.
@@ -858,7 +858,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `docs(spike): cloudflared resilience finding`.
 
-- [ ] 4. fs.watch on macOS reliability spike
+- [x] 4. fs.watch on macOS reliability spike
 
   **What to do**:
   - Create `bin/spike-fswatch.ts` that watches `tracked-repos.yaml` (test fixture) and logs every change event.
@@ -902,7 +902,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `docs(spike): fs.watch reliability matrix`.
 
-- [ ] 5. SQL schema + migrations runner
+- [x] 5. SQL schema + migrations runner
 
   **What to do**:
   - Create `apps/backend/src/db/migrations/0001_init.sql` defining the following 8 tables exactly:
@@ -974,7 +974,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(db): schema + migration runner`.
 
-- [ ] 6. Shared types package contents (`packages/types/src/`)
+- [x] 6. Shared types package contents (`packages/types/src/`)
 
   > Workspace skeleton (`package.json`, `tsconfig.json`, `exports` map, placeholder `index.ts`) already shipped by T1. This task fills in the actual types.
 
@@ -1048,7 +1048,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(types): @repo/types domain + api shapes`.
 
-- [ ] 7. Encrypted DB connector module
+- [~] 7. Encrypted DB connector module
 
   **What to do**:
   - Create `src/db/connection.ts` exporting `open(): Database` and `close(db): void`.
