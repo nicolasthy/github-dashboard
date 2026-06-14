@@ -1,7 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
   "files": {
-    "ignore": [".turbo", ".git", "node_modules", "bun.lockb"]
+    "ignoreUnknown": true
   },
   "linter": {
     "enabled": true,
