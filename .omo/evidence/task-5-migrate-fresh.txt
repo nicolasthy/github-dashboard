@@ -1,0 +1,46 @@
+Task T5: SQL schema + migration runner — evidence
+Generated: 2026-06-14
+
+## bun turbo test (8 pass, 0 fail)
+
+@repo/backend:test: $ bun test
+@repo/backend:test: bun test v1.3.11 (af24e281)
+
+@repo/backend:test: src/__tests__/sanity.test.ts:
+@repo/backend:test: (pass) bun test runs [0.08ms]
+@repo/backend:test: (pass) @repo/types cross-workspace import resolves [0.04ms]
+@repo/backend:test: (pass) PR_TRACKER_KEY env detection does not throw [0.18ms]
+
+@repo/backend:test: src/db/migrate.test.ts:
+@repo/backend:test: (pass) fresh DB creates exactly 8 tables after migration [3.80ms]
+@repo/backend:test: (pass) re-running migrations is a no-op (idempotent) [0.69ms]
+@repo/backend:test: (pass) PRAGMA foreign_keys is ON after setup [0.47ms]
+@repo/backend:test: (pass) CHECK constraint rejects invalid state in pull_request [0.45ms]
+@repo/backend:test: (pass) all 5 indexes are present after migration [0.14ms]
+
+@repo/backend:test:  8 pass
+@repo/backend:test:  0 fail
+@repo/backend:test:  21 expect() calls
+@repo/backend:test: Ran 8 tests across 2 files. [29.00ms]
+
+Tasks: 2 successful, 2 total
+
+## Files delivered
+
+apps/backend/src/db/migrations/0001_init.sql — 8 tables (repository, person,
+  pull_request, review, delivery_log, repo_state, api_token, schema_migrations)
+  + 5 indexes (idx_pr_state_repo_updated, idx_pr_author, idx_review_pr,
+  idx_delivery_received, idx_repo_active)
+
+apps/backend/src/db/migrate.ts — runMigrations(db: SqlDb): void + async main()
+  with dynamic import of better-sqlite3-multiple-ciphers (so test runner does
+  not trigger the native addon load)
+
+apps/backend/src/db/migrate.test.ts — 5 tests via bun:sqlite wrapper
+
+## Notes
+
+Bun 1.3.11 blocks dlopen for packages whose path contains "better-sqlite3"
+(ERR_DLOPEN_FAILED). Fixed by lazy-loading the native addon only inside main()
+via a dynamic import. Tests use bun:sqlite with a thin SqlDb-compatible wrapper
+and exercise the same SQL semantics (CHECK constraints, indexes, idempotency).
