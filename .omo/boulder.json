@@ -8,7 +8,7 @@
       "plan_name": "github-pr-tracker",
       "status": "active",
       "started_at": "2026-06-14T09:16:20.965Z",
-      "updated_at": "2026-06-14T10:14:57.026Z",
+      "updated_at": "2026-06-14T10:31:59.289Z",
       "session_ids": [
         "opencode:ses_13a950db1ffeki188y0QjCOKre"
       ],
@@ -42,6 +42,30 @@
           "status": "completed",
           "ended_at": "2026-06-14T10:14:57.026Z",
           "elapsed_ms": 1855386
+        },
+        "todo:8": {
+          "task_key": "todo:8",
+          "task_label": "8",
+          "task_title": "HMAC signature verifier",
+          "session_id": "opencode:ses_13a5bd0caffe8qNzpLcbLSqfAo",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-06-14T10:29:32.214Z",
+          "started_at": "2026-06-14T10:28:09.688Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T10:29:32.214Z",
+          "elapsed_ms": 82526
+        },
+        "todo:9": {
+          "task_key": "todo:9",
+          "task_label": "9",
+          "task_title": "Delivery dedup store",
+          "session_id": "opencode:ses_13a515fa1ffeHegRgoSz15ZaDs",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-06-14T10:31:59.290Z",
+          "started_at": "2026-06-14T10:31:59.290Z",
+          "status": "running"
         }
       }
     }
@@ -49,7 +73,7 @@
   "active_plan": "/Users/nicolas.thiry/Developer/personal/github-dashboard/.omo/plans/github-pr-tracker.md",
   "started_at": "2026-06-14T09:16:20.965Z",
   "status": "active",
-  "updated_at": "2026-06-14T10:14:57.026Z",
+  "updated_at": "2026-06-14T10:31:59.289Z",
   "session_ids": [
     "opencode:ses_13a950db1ffeki188y0QjCOKre"
   ],
@@ -83,6 +107,30 @@
       "status": "completed",
       "ended_at": "2026-06-14T10:14:57.026Z",
       "elapsed_ms": 1855386
+    },
+    "todo:8": {
+      "task_key": "todo:8",
+      "task_label": "8",
+      "task_title": "HMAC signature verifier",
+      "session_id": "opencode:ses_13a5bd0caffe8qNzpLcbLSqfAo",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-06-14T10:29:32.214Z",
+      "started_at": "2026-06-14T10:28:09.688Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T10:29:32.214Z",
+      "elapsed_ms": 82526
+    },
+    "todo:9": {
+      "task_key": "todo:9",
+      "task_label": "9",
+      "task_title": "Delivery dedup store",
+      "session_id": "opencode:ses_13a515fa1ffeHegRgoSz15ZaDs",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-06-14T10:31:59.290Z",
+      "started_at": "2026-06-14T10:31:59.290Z",
+      "status": "running"
     }
   },
   "agent": "atlas"

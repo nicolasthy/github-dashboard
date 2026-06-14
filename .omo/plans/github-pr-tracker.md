@@ -1048,7 +1048,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(types): @repo/types domain + api shapes`.
 
-- [~] 7. Encrypted DB connector module
+- [x] 7. Encrypted DB connector module
 
   **What to do**:
   - Create `src/db/connection.ts` exporting `open(): Database` and `close(db): void`.
@@ -1105,7 +1105,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(db): encrypted connector with rekey`.
 
-- [ ] 8. HMAC signature verifier
+- [x] 8. HMAC signature verifier
 
   **What to do**:
   - Create `src/webhook/verify.ts` exporting `verifySignature(rawBody: Buffer, headerValue: string | null, secret: string): boolean`.
@@ -1424,7 +1424,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(server): webhook server on loopback`.
 
-- [ ] 14. Octokit REST client
+- [x] 14. Octokit REST client
 
   **What to do**:
   - Create `src/github/client.ts` exporting `makeClient(token: string)` returning an `Octokit` instance with a custom request hook that pauses on `X-RateLimit-Remaining < 10` until `X-RateLimit-Reset`.
@@ -1880,7 +1880,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(server): read api with open/closed/all lifecycle`.
 
-- [ ] 21. Privacy-allowlist logger
+- [x] 21. Privacy-allowlist logger
 
   **What to do**:
   - Create `src/logging/index.ts` exporting `log(level, msg, fields)`.

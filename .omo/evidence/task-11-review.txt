@@ -1,0 +1,14 @@
+@repo/backend test: bun test v1.3.11 (af24e281)
+@repo/backend test: 
+@repo/backend test: src/handlers/pull-request-review.test.ts:
+@repo/backend test: (pass) submitted action inserts review with correct mapped state [2.40ms]
+@repo/backend test: (pass) dismissed action forces state to DISMISSED regardless of review.state [0.06ms]
+@repo/backend test: (pass) missing parent PR returns rejected and inserts no review row [0.17ms]
+@repo/backend test: (pass) unsupported action returns ignored [0.18ms]
+@repo/backend test: (pass) edited action updates existing review state [0.12ms]
+@repo/backend test: 
+@repo/backend test:  5 pass
+@repo/backend test:  0 fail
+@repo/backend test:  13 expect() calls
+@repo/backend test: Ran 5 tests across 1 file. [9.00ms]
+@repo/backend test: Exited with code 0
