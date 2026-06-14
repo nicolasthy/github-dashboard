@@ -1,0 +1,15 @@
+@repo/backend test: bun test v1.3.11 (af24e281)
+@repo/backend test: 
+@repo/backend test: src/github/client.test.ts:
+@repo/backend test: (pass) makeClient returns an Octokit instance [1.50ms]
+@repo/backend test: (pass) listPullsForRepo paginates correctly [0.38ms]
+@repo/backend test: (pass) listPullsForRepo maps fields correctly [0.05ms]
+@repo/backend test: (pass) rate-limit hook pauses when remaining < 10 [0.22ms]
+@repo/backend test: (pass) rate-limit hook does not pause when remaining >= 10 [0.02ms]
+@repo/backend test: 
+@repo/backend test:  5 pass
+@repo/backend test:  0 fail
+@repo/backend test:  18 expect() calls
+@repo/backend test: Ran 5 tests across 1 file. [17.00ms]
+@repo/backend test: Exited with code 0
+exit:0
