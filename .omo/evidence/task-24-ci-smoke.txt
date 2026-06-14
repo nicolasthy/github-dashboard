@@ -1,0 +1,193 @@
+=== CI Smoke Test ===
+Bun version: 1.3.11
+Working directory: /Users/nicolas.thiry/Developer/personal/github-dashboard
+
+--- Step 1: bun install ---
+bun install v1.3.11 (af24e281)
+
+$ lefthook install
+sync hooks: ✔️ (pre-commit)
+
+Checked 83 installs across 103 packages (no changes) [206.00ms]
+
+--- Step 2: DB connector self-test ---
+DB connector: OK
+
+--- Step 3: bun turbo typecheck ---
+• turbo 2.9.18
+
+   • Packages in scope: @repo/backend, @repo/types
+   • Running typecheck in 2 packages
+   • Remote caching disabled
+
+@repo/types:typecheck: cache hit, replaying logs c0aa15e13c4957c6
+@repo/types:typecheck: $ tsc --noEmit
+@repo/backend:typecheck: cache hit, replaying logs ee43e2ce85b67b3a
+@repo/backend:typecheck: $ tsc --noEmit
+
+ Tasks:    2 successful, 2 total
+Cached:    2 cached, 2 total
+  Time:    10ms >>> FULL TURBO
+
+
+--- Step 4: bun turbo test ---
+• turbo 2.9.18
+
+   • Packages in scope: @repo/backend, @repo/types
+   • Running test in 2 packages
+   • Remote caching disabled
+
+@repo/types:test: cache hit, replaying logs f0060a10ed5c62d2
+@repo/backend:test: cache hit, replaying logs 0364723d01f83402
+@repo/types:test: $ bun test
+@repo/types:test: bun test v1.3.11 (af24e281)
+@repo/types:test: 
+@repo/types:test: src/__tests__/brand.test.ts:
+@repo/types:test: (pass) asUserId creates valid branded type [0.07ms]
+@repo/types:test: (pass) asUserId rejects non-positive integers [0.08ms]
+@repo/types:test: (pass) brand types are incompatible at compile time [0.12ms]
+@repo/types:test: 
+@repo/types:test:  3 pass
+@repo/types:test:  0 fail
+@repo/types:test:  5 expect() calls
+@repo/types:test: Ran 3 tests across 1 file. [13.00ms]
+@repo/backend:test: $ bun test
+@repo/backend:test: bun test v1.3.11 (af24e281)
+@repo/backend:test: 
+@repo/backend:test: src/webhook/verify.test.ts:
+@repo/backend:test: (pass) valid signature returns true [0.80ms]
+@repo/backend:test: (pass) off-by-one-byte signature returns false [0.07ms]
+@repo/backend:test: (pass) missing header returns false (no throw) [0.02ms]
+@repo/backend:test: (pass) wrong secret returns false [0.01ms]
+@repo/backend:test: (pass) malformed prefix returns false [0.01ms]
+@repo/backend:test: 
+@repo/backend:test: src/webhook/dedup.test.ts:
+@repo/backend:test: (pass) first call with a delivery_id returns 'new' [1.24ms]
+@repo/backend:test: (pass) second call with the same id returns 'dup' [0.34ms]
+@repo/backend:test: (pass) different delivery_ids are independent [0.09ms]
+@repo/backend:test: (pass) markOutcome updates processed_at and outcome [0.22ms]
+@repo/backend:test: (pass) recordDelivery does not store payload body [0.10ms]
+@repo/backend:test: 
+@repo/backend:test: src/config/tracked-repos.test.ts:
+@repo/backend:test: (pass) loadTrackedRepos: valid YAML loads into typed TrackedRepoConfig [5.65ms]
+@repo/backend:test: (pass) loadTrackedRepos: duplicate repo_id throws DuplicateRepoError [1.07ms]
+@repo/backend:test: (pass) loadTrackedRepos: owner mismatching org throws OrgMismatchError [0.62ms]
+@repo/backend:test: (pass) loadTrackedRepos: case-insensitive org matching [0.47ms]
+@repo/backend:test: (pass) loadTrackedRepos: missing org field throws error [0.23ms]
+@repo/backend:test: (pass) loadTrackedRepos: empty repos array throws error [1.47ms]
+@repo/backend:test: (pass) loadTrackedRepos: missing repo_id throws error [0.40ms]
+@repo/backend:test: (pass) loadTrackedRepos: non-integer repo_id throws error [0.49ms]
+@repo/backend:test: (pass) syncToDb: upserts repos from config with active=1 [0.52ms]
+@repo/backend:test: (pass) syncToDb: soft-disables repos absent from config [0.25ms]
+@repo/backend:test: (pass) syncToDb: previously-present rows keep their existing PRs untouched [0.20ms]
+@repo/backend:test: (pass) syncToDb: adding new repo to config inserts repository row with active=1 [0.11ms]
+@repo/backend:test: (pass) getActiveRepos: returns only active repos [0.08ms]
+@repo/backend:test: (pass) getActiveRepos: returns empty array when no active repos [0.02ms]
+@repo/backend:test: 
+@repo/backend:test: src/auth/token-store.test.ts:
+@repo/backend:test: (pass) issued plaintext verifies via verifyToken [36.92ms]
+@repo/backend:test: (pass) wrong plaintext returns null [34.76ms]
+@repo/backend:test: (pass) revoked token returns null on verify [17.95ms]
+@repo/backend:test: (pass) stored hash contains argon2id params [17.38ms]
+@repo/backend:test: (pass) listTokens returns tokens without hash field [35.19ms]
+@repo/backend:test: 
+@repo/backend:test: src/server/auth.test.ts:
+@repo/backend:test: (pass) missing Authorization header returns 401 [0.66ms]
+@repo/backend:test: (pass) wrong token returns 401 [0.18ms]
+@repo/backend:test: (pass) valid token returns ApiToken [34.59ms]
+@repo/backend:test: (pass) non-Bearer scheme returns 401 [0.31ms]
+@repo/backend:test: 
+@repo/backend:test: src/server/webhook.test.ts:
+@repo/backend:test: (pass) GET /ping > returns 200 with body 'pong' [2.34ms]
+@repo/backend:test: (pass) unknown routes > GET / returns 404 [1.20ms]
+@repo/backend:test: (pass) unknown routes > GET /unknown returns 404 [0.96ms]
+@repo/backend:test: (pass) unknown routes > POST /other returns 404 [1.34ms]
+@repo/backend:test: (pass) POST /webhook — signature check > missing signature returns 401 [2.40ms]
+@repo/backend:test: (pass) POST /webhook — signature check > wrong signature returns 401 [1.58ms]
+@repo/backend:test: (pass) POST /webhook — valid request > valid signed ping returns 200 with outcome applied [1.44ms]
+@repo/backend:test: (pass) POST /webhook — valid request > unknown event returns 200 with outcome ignored [1.32ms]
+@repo/backend:test: (pass) POST /webhook — body size limit > body > 25 MiB returns 413 [5.46ms]
+@repo/backend:test: (pass) POST /webhook — dedup > duplicate delivery_id returns 200 with outcome dedup [1.57ms]
+@repo/backend:test: 
+@repo/backend:test: src/github/client.test.ts:
+@repo/backend:test: (pass) makeClient returns an Octokit instance [0.55ms]
+@repo/backend:test: (pass) listPullsForRepo paginates correctly [0.41ms]
+@repo/backend:test: (pass) listPullsForRepo maps fields correctly [0.06ms]
+@repo/backend:test: (pass) rate-limit hook pauses when remaining < 10 [0.11ms]
+@repo/backend:test: (pass) rate-limit hook does not pause when remaining >= 10 [0.07ms]
+@repo/backend:test: 
+@repo/backend:test: src/__tests__/sanity.test.ts:
+@repo/backend:test: (pass) bun test runs
+@repo/backend:test: (pass) @repo/types cross-workspace import resolves [0.03ms]
+@repo/backend:test: (pass) PR_TRACKER_KEY env detection does not throw [0.02ms]
+@repo/backend:test: 
+@repo/backend:test: src/db/migrate.test.ts:
+@repo/backend:test: (pass) fresh DB creates exactly 8 tables after migration [0.91ms]
+@repo/backend:test: (pass) re-running migrations is a no-op (idempotent) [0.98ms]
+@repo/backend:test: (pass) PRAGMA foreign_keys is ON after setup [0.46ms]
+@repo/backend:test: (pass) CHECK constraint rejects invalid state in pull_request [0.38ms]
+@repo/backend:test: (pass) all 5 indexes are present after migration [0.32ms]
+@repo/backend:test: 
+@repo/backend:test: src/db/connection.test.ts:
+@repo/backend:test: (pass) open() returns a working Database [0.87ms]
+@repo/backend:test: (pass) open() enables WAL mode [0.56ms]
+@repo/backend:test: (pass) open() enables foreign keys [0.45ms]
+@repo/backend:test: (pass) selfTest() passes on valid DB [0.37ms]
+@repo/backend:test: 
+@repo/backend:test: src/handlers/repository.test.ts:
+@repo/backend:test: (pass) rename updates name for tracked repo [0.29ms]
+@repo/backend:test: (pass) rename for untracked repo returns 'ignored' [0.05ms]
+@repo/backend:test: (pass) non-renamed action returns 'ignored' [0.06ms]
+@repo/backend:test: (pass) rename does not throw error [0.09ms]
+@repo/backend:test: 
+@repo/backend:test: src/handlers/pull-request-review.test.ts:
+@repo/backend:test: (pass) submitted action inserts review with correct mapped state [0.26ms]
+@repo/backend:test: (pass) dismissed action forces state to DISMISSED regardless of review.state [0.32ms]
+@repo/backend:test: (pass) missing parent PR returns rejected and inserts no review row [0.11ms]
+@repo/backend:test: (pass) unsupported action returns ignored [0.09ms]
+@repo/backend:test: (pass) edited action updates existing review state [0.15ms]
+@repo/backend:test: 
+@repo/backend:test: src/handlers/pull-request.test.ts:
+@repo/backend:test: (pass) action=opened inserts a row with state=open and returns 'applied' [0.52ms]
+@repo/backend:test: (pass) action=synchronize updates head_sha and updated_at [0.06ms]
+@repo/backend:test: (pass) action=edited updates title [0.43ms]
+@repo/backend:test: (pass) action=converted_to_draft sets draft=1 [0.03ms]
+@repo/backend:test: (pass) action=ready_for_review sets draft=0 [0.39ms]
+@repo/backend:test: (pass) action=closed sets state=closed and stores closed_at + merged_at [0.15ms]
+@repo/backend:test: (pass) action=closed without merge stores closed_at and leaves merged_at null [0.12ms]
+@repo/backend:test: (pass) action=reopened sets state=open and clears closed_at + merged_at [0.10ms]
+@repo/backend:test: (pass) action=labeled returns 'ignored' and writes no row [0.15ms]
+@repo/backend:test: (pass) action=assigned (any non-allowed) returns 'ignored' [0.09ms]
+@repo/backend:test: (pass) org mismatch returns 'rejected' and writes no row [0.15ms]
+@repo/backend:test: (pass) event for repo not in repository table returns 'ignored' [0.03ms]
+@repo/backend:test: (pass) event for repo with active=0 returns 'ignored' [0.17ms]
+@repo/backend:test: (pass) ghost user (id=10137) NEW PR returns 'rejected' and writes no row [0.01ms]
+@repo/backend:test: (pass) ghost user (id=10137) EXISTING PR is allowed to update [0.24ms]
+@repo/backend:test: (pass) ordering fence: out-of-order opened-after-closed leaves state=closed [0.19ms]
+@repo/backend:test: (pass) ordering fence: equal updated_at returns 'stale' (>= comparison) [0.09ms]
+@repo/backend:test: (pass) upsertPullRequestFromRestPayload inserts open PR from REST [0.17ms]
+@repo/backend:test: (pass) upsertPullRequestFromRestPayload inserts closed PR with state=closed [0.03ms]
+@repo/backend:test: (pass) upsertPullRequestFromRestPayload skips ghost user NEW PR [0.12ms]
+@repo/backend:test: (pass) upsertPullRequestFromRestPayload applies ghost user to EXISTING PR [0.17ms]
+@repo/backend:test: (pass) upsertPullRequestFromRestPayload honors ordering fence [0.18ms]
+@repo/backend:test: (pass) opened action upserts the author into person [0.13ms]
+@repo/backend:test: (pass) person upsert refreshes login + avatar_url on conflict [0.16ms]
+@repo/backend:test: 
+@repo/backend:test: src/logging/index.test.ts:
+@repo/backend:test: (pass) drops non-allowlisted fields from log output [0.38ms]
+@repo/backend:test: (pass) log function accepts all allowlisted fields [0.15ms]
+@repo/backend:test: (pass) no network sinks in logging module [0.07ms]
+@repo/backend:test: (pass) log output is valid JSONL [0.18ms]
+@repo/backend:test: (pass) respects LOG_STDERR environment variable [1.17ms]
+@repo/backend:test: 
+@repo/backend:test:  98 pass
+@repo/backend:test:  0 fail
+@repo/backend:test:  229 expect() calls
+@repo/backend:test: Ran 98 tests across 14 files. [291.00ms]
+
+ Tasks:    2 successful, 2 total
+Cached:    2 cached, 2 total
+  Time:    9ms >>> FULL TURBO
+
+
+=== CI Smoke Test PASSED ===

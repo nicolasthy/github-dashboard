@@ -11,7 +11,6 @@
     "token": "bun bin/token.ts",
     "spike:sqlcipher": "bun bin/spike-sqlcipher.ts"
   },
-  "postinstall": "bun rebuild better-sqlite3-multiple-ciphers",
   "dependencies": {
     "@octokit/rest": "21.x",
     "@repo/types": "workspace:*",
