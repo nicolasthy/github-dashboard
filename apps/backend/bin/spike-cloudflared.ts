@@ -48,24 +48,23 @@ const server = Bun.serve({
     // until we respond).
     await req.text();
 
-    // biome-ignore lint/suspicious/noConsole: spike measurement tool; stdout IS the log sink
-    console.log(
+    process.stdout.write(
       JSON.stringify({
         seq,
         at,
         event,
         delivery,
         bytes: Number(contentLength),
-      }),
+      }) + "\n",
     );
 
     return new Response("ok", { status: 200 });
   },
 });
 
-// biome-ignore lint/suspicious/noConsole: spike measurement tool; stdout IS the log sink
-console.log(`spike-cloudflared listening on http://${server.hostname}:${server.port} (POST only)`);
-// biome-ignore lint/suspicious/noConsole: spike measurement tool; stdout IS the log sink
-console.log(
-  "point cloudflared at this address and run the 90s-outage methodology in docs/spikes/cloudflared.md",
+process.stdout.write(
+  `spike-cloudflared listening on http://${server.hostname}:${server.port} (POST only)\n`,
+);
+process.stdout.write(
+  "point cloudflared at this address and run the 90s-outage methodology in docs/spikes/cloudflared.md\n",
 );
