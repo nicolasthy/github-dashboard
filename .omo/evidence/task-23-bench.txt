@@ -1,0 +1,8 @@
+@repo/backend bench:webhook: Bench results (1000 requests):
+@repo/backend bench:webhook:   p50=0.1ms
+@repo/backend bench:webhook:   p95=0.4ms
+@repo/backend bench:webhook:   p99=0.7ms
+@repo/backend bench:webhook:   max=6.1ms
+@repo/backend bench:webhook:   non-2xx=0
+@repo/backend bench:webhook: PASS: p99=0.7ms < 500ms
+@repo/backend bench:webhook: Exited with code 0
