@@ -1,0 +1,26 @@
+@repo/backend test: bun test v1.3.11 (af24e281)
+
+src/server/read-api.test.ts:
+(pass) GET /api/health > returns 200 without auth [24.44ms]
+(pass) auth guard > GET /api/prs without bearer returns 401 [18.40ms]
+(pass) auth guard > GET /api/prs/:id without bearer returns 401 [18.65ms]
+(pass) auth guard > GET /api/repos without bearer returns 401 [17.92ms]
+(pass) GET /api/prs > state=closed returns only closed PRs [37.06ms]
+(pass) GET /api/prs > state=all returns both open and closed PRs from active repos [35.87ms]
+(pass) GET /api/prs > author filter by login returns only matching PRs [35.53ms]
+(pass) GET /api/prs > soft-disabled repo PRs excluded from state=all [38.03ms]
+(pass) GET /api/prs/:id > returns PR detail with reviews array joined with reviewer person [37.48ms]
+(pass) GET /api/prs/:id > unknown PR returns 404 [35.50ms]
+(pass) GET /api/prs/:id > PR in disabled repo returns 404 [39.60ms]
+(pass) GET /api/repos > returns active repos with pr_count and open_count [41.73ms]
+
+ 12 pass
+ 0 fail
+ 33 expect() calls
+Ran 12 tests across 1 file. [407.00ms]
+Exited with code 0
+
+---
+bun turbo test:     PASS (122/122 total, 12 new read-api tests)
+bun turbo typecheck: PASS
+bun turbo check:    PASS (Biome 2.4.13, 52 files)
