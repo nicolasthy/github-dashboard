@@ -1,7 +1,7 @@
-import { expect, test, afterEach } from "bun:test";
 import { Database } from "bun:sqlite";
-import { open, close, selfTest } from "./connection.ts";
-import { unlinkSync, existsSync } from "node:fs";
+import { afterEach, expect, test } from "bun:test";
+import { existsSync, unlinkSync } from "node:fs";
+import { close, open, selfTest } from "./connection";
 
 const TEST_DB = "/tmp/test-connection-" + Date.now() + ".db";
 

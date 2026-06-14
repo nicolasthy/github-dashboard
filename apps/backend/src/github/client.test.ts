@@ -1,6 +1,6 @@
 import { expect, mock, test } from "bun:test";
 import { Octokit } from "@octokit/rest";
-import { applyRateLimit, listPullsForRepo, makeClient } from "./client.ts";
+import { applyRateLimit, listPullsForRepo, makeClient } from "./client";
 
 test("makeClient returns an Octokit instance", () => {
   const client = makeClient("test-token");
@@ -11,7 +11,7 @@ test("listPullsForRepo paginates correctly", async () => {
   const mockClient = {
     rest: {
       pulls: {
-        list: mock(async ({ page }: { page: number }) => {
+        list: mock(({ page }: { page: number }) => {
           if (page === 1) {
             return { data: Array.from({ length: 100 }, (_, i) => makePR(i + 1)), headers: {} };
           }
@@ -25,31 +25,40 @@ test("listPullsForRepo paginates correctly", async () => {
         }),
       },
     },
-    hook: { after: () => {} },
+    hook: {
+      after: () => {
+        /* noop */
+      },
+    },
   } as unknown as Octokit;
 
   const pulls = await listPullsForRepo(mockClient, "owner", "repo", "all");
   expect(pulls.length).toBe(250);
-  expect(pulls[0].id).toBe(1);
-  expect(pulls[249].id).toBe(250);
+  expect(pulls[0]?.id).toBe(1);
+  expect(pulls[249]?.id).toBe(250);
 });
 
 test("listPullsForRepo maps fields correctly", async () => {
   const mockClient = {
     rest: {
       pulls: {
-        list: mock(async () => ({
+        list: mock(() => ({
           data: [makePR(42)],
           headers: {},
         })),
       },
     },
-    hook: { after: () => {} },
+    hook: {
+      after: () => {
+        /* noop */
+      },
+    },
   } as unknown as Octokit;
 
   const pulls = await listPullsForRepo(mockClient, "owner", "repo", "open");
   expect(pulls.length).toBe(1);
   const pr = pulls[0];
+  if (!pr) throw new Error("Expected at least one pull request");
   expect(pr.id).toBe(42);
   expect(pr.node_id).toBe("node_42");
   expect(pr.number).toBe(42);
