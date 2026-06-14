@@ -1,0 +1,11 @@
+# Tracked repositories configuration
+# Format: list of GitHub repositories to track for PR activity
+#
+# Example:
+# repos:
+#   - owner: "facebook"
+#     name: "react"
+#   - owner: "microsoft"
+#     name: "vscode"
+
+repos: []

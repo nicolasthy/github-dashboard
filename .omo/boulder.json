@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "active_work_id": "github-pr-tracker-347811af",
+  "works": {
+    "github-pr-tracker-347811af": {
+      "work_id": "github-pr-tracker-347811af",
+      "active_plan": "/Users/nicolas.thiry/Developer/personal/github-dashboard/.omo/plans/github-pr-tracker.md",
+      "plan_name": "github-pr-tracker",
+      "status": "active",
+      "started_at": "2026-06-14T09:16:20.965Z",
+      "updated_at": "2026-06-14T09:16:20.965Z",
+      "session_ids": ["opencode:ses_13a950db1ffeki188y0QjCOKre"],
+      "session_origins": {
+        "opencode:ses_13a950db1ffeki188y0QjCOKre": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {}
+    }
+  },
+  "active_plan": "/Users/nicolas.thiry/Developer/personal/github-dashboard/.omo/plans/github-pr-tracker.md",
+  "started_at": "2026-06-14T09:16:20.965Z",
+  "status": "active",
+  "updated_at": "2026-06-14T09:16:20.965Z",
+  "session_ids": ["opencode:ses_13a950db1ffeki188y0QjCOKre"],
+  "session_origins": {
+    "opencode:ses_13a950db1ffeki188y0QjCOKre": "direct"
+  },
+  "plan_name": "github-pr-tracker",
+  "task_sessions": {},
+  "agent": "atlas"
+}
