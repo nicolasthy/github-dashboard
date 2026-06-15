@@ -1353,7 +1353,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(handlers): repository.renamed`.
 
-- [ ] 13. Webhook HTTP server
+- [x] 13. Webhook HTTP server
 
   **What to do**:
   - Create `src/server/webhook.ts` exporting `startWebhookServer(opts): Server`.
@@ -1466,7 +1466,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(github): octokit client with rate-limit hook`.
 
-- [ ] 15. Reconciliation service (per configured repo, state=all)
+- [x] 15. Reconciliation service (per configured repo, state=all)
 
   **What to do**:
   - Create `apps/backend/src/reconcile/index.ts` exporting `reconcileAll(db, client, activeRepos): Promise<ReconcileReport>`.
@@ -1609,7 +1609,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(config): tracked-repos loader and DB sync`.
 
-- [ ] 17. Config hot-reload watcher (`tracked-repos.yaml`)
+- [x] 17. Config hot-reload watcher (`tracked-repos.yaml`)
 
   **What to do**:
   - Create `apps/backend/src/config/watcher.ts` exporting `watchTrackedRepos(path, onChange: (config) => void): { stop: () => void }`.
@@ -1735,7 +1735,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(auth): argon2id token store + cli`.
 
-- [ ] 19. Auth middleware
+- [x] 19. Auth middleware
 
   **What to do**:
   - Create `src/server/auth.ts` exporting `requireBearer(db): (req: Request) => Promise<ApiToken | Response>`.
@@ -1772,7 +1772,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(auth): bearer middleware`.
 
-- [ ] 20. Read API HTTP server (4 routes, both lifecycles)
+- [x] 20. Read API HTTP server (4 routes, both lifecycles)
 
   **What to do**:
   - Create `apps/backend/src/server/read-api.ts` exporting `startReadApiServer(opts): Server`.
@@ -1929,7 +1929,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(logging): allowlist logger`.
 
-- [ ] 22. Process entrypoint + signal handling
+- [x] 22. Process entrypoint + signal handling
 
   **What to do**:
   - Create `apps/backend/src/index.ts` as the main entrypoint.
@@ -1985,7 +1985,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(app): entrypoint and signal handling`.
 
-- [ ] 23. Inline write-path bench
+- [x] 23. Inline write-path bench
 
   **What to do**:
   - Create `bin/bench-webhook.ts` that:
@@ -2026,7 +2026,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `feat(bench): inline write-path harness`.
 
-- [ ] 24. CI smoke test for SQLCipher binding under Bun
+- [x] 24. CI smoke test for SQLCipher binding under Bun
 
   **What to do**:
   - Create `.github/workflows/ci.yml` (or `scripts/ci-smoke.sh` if no CI is wired yet — user is local-only) with:
@@ -2065,7 +2065,7 @@ Max Concurrent: 7 (Wave 1)
 
   **Commit**: YES — `chore(ci): sqlcipher binding smoke`.
 
-- [ ] 25. Operator runbook + README quickstart + deferred-deployment notes
+- [x] 25. Operator runbook + README quickstart + deferred-deployment notes
 
   **What to do**:
   - Create root `README.md` with:
@@ -2146,19 +2146,19 @@ Max Concurrent: 7 (Wave 1)
 
 > 4 review agents run in PARALLEL. ALL must APPROVE. Present consolidated results to the user and get explicit "okay" before completing.
 
-- [ ] F1. **Plan Compliance Audit** — `oracle`
+- [x] F1. **Plan Compliance Audit** — `oracle`
   Read this plan end-to-end. For each "Must Have": verify implementation exists (read file, curl endpoint, run command). For each "Must NOT Have": search codebase for forbidden patterns — reject with file:line if found. Verify webhook event list is exactly the 4 locked events with named actions only. Verify SQLCipher binding pinned at `12.10.0`. Verify both servers bind 127.0.0.1 only. Verify allowlist logger has no payload/login/title fields. Verify ordering fence in `pull_request` handler. Verify ghost user (id 10137) runtime guard exists in the handler (drops NEW events with no existing row). Verify repo allowlist enforced (events for repos with `active=0` or missing are `'ignored'`). Verify monorepo layout (`apps/backend`, `packages/types`) and that `@repo/types` is importable cross-workspace. Verify no deployment manifests (`vercel.json`/`fly.toml`/etc.) committed. Check evidence files exist in `.omo/evidence/`. Compare deliverables against plan.
   Output: `Must Have [N/N] | Must NOT Have [N/N] | Tasks [N/N] | VERDICT: APPROVE/REJECT`
 
-- [ ] F2. **Code Quality Review** — `unspecified-high`
+- [x] F2. **Code Quality Review** — `unspecified-high`
   Run the full quality gate: `bun turbo typecheck`, `bun turbo check` (Biome lint+format), `bun turbo test`, `bun --filter @repo/backend run bench:webhook`. ALL must exit 0. Biome's `noExplicitAny`, `noNonNullAssertion`, `noConsole`, `noFloatingPromises`, `useAwait`, `noBarrelFile`, `noReExportAll`, `useImportType` enforce most slop patterns directly — review focuses on what Biome can't catch: AI-slop tells (excessive comments, over-abstraction, generic names like data/result/item/temp), security-critical correctness (constant-time compare in HMAC verifier — no `===` on signature), and parameter audit (argon2id memoryCost/timeCost/parallelism meet OWASP recommendations). Also verify: no `// biome-ignore` directives outside the single sanctioned one in `packages/types/src/index.ts` (T6); no `tsconfig.base.json` overrides relaxing the strict cluster in any workspace; `@biomejs/biome` still pinned to `2.4.13` exact; `tsconfig.base.json` still has all 11 strict-cluster flags present (`noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noPropertyAccessFromIndexSignature`, etc.).
   Output: `Typecheck [PASS/FAIL] | Biome [PASS/FAIL] | Tests [N pass/N fail] | Bench p99 [Nms] | Slop [N clean/N issues] | Biome-ignores [N expected/N found] | VERDICT`
 
-- [ ] F3. **Real Manual QA** — `unspecified-high`
+- [x] F3. **Real Manual QA** — `unspecified-high`
   Start from clean state (`rm -rf apps/backend/data/ apps/backend/logs/`). Execute EVERY QA scenario from EVERY task — follow exact steps, capture evidence to `.omo/evidence/final-qa/`. Test cross-task integration: (a) send 3 webhook events for the same PR in reverse `updated_at` order → final state matches latest, (b) add a repo entry to `tracked-repos.yaml` → within 2s, GET /api/repos includes it (with `pr_count`/`open_count` initially 0), (c) curl 0.0.0.0 on both ports → both refused, (d) `sqlite3 apps/backend/data/prs.db` without key → reports "file is not a database", (e) POST a `pull_request.opened` webhook for a repo NOT in `tracked-repos.yaml` → delivery_log outcome is `'ignored'` and no `pull_request` row inserted, (f) POST a `pull_request.closed` webhook with `merged_at` populated → row has `state='closed'` and non-null `merged_at`, then GET /api/prs?state=closed includes it. Test edge cases: missing `X-Hub-Signature-256`, wrong signature, duplicate delivery, ghost author payload (id 10137) with no existing row.
   Output: `Scenarios [N/N pass] | Integration [6/6] | Edge Cases [N tested/N pass] | VERDICT`
 
-- [ ] F4. **Scope Fidelity Check** — `deep`
+- [x] F4. **Scope Fidelity Check** — `deep`
   For each task: read "What to do", read actual diff (`git log`/`git diff`). Verify 1:1 — everything in spec was built (no missing), nothing beyond spec was built (no creep). Check "Must NOT do" compliance per task. Detect cross-task contamination: Task N touching Task M's files. Verify webhook event list in code matches the 4 locked events. Verify no per-row AES-GCM crept back in. Verify no external HTTP clients beyond Octokit-to-GitHub. Flag unaccounted changes.
   Output: `Tasks [N/N compliant] | Contamination [CLEAN/N issues] | Unaccounted [CLEAN/N files] | VERDICT`
 
@@ -2186,5 +2186,5 @@ Max Concurrent: 7 (Wave 1)
 - [ ] No payload/login/title strings in `logs/app.log` after a full QA run
 - [ ] Reconciliation aligns DB to GitHub on every cold start
 - [ ] Config hot-reload reflected within 2s
-- [ ] F1, F2, F3, F4 all APPROVE
+- [x] F1, F2, F3, F4 all APPROVE
 - [ ] User explicit "okay" received
