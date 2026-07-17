@@ -1,0 +1,33 @@
+@repo/backend test: bun test v1.3.11 (af24e281)
+@repo/backend test: 
+@repo/backend test: src/handlers/pull-request.test.ts:
+@repo/backend test: (pass) action=opened inserts a row with state=open and returns 'applied' [3.04ms]
+@repo/backend test: (pass) action=synchronize updates head_sha and updated_at [0.16ms]
+@repo/backend test: (pass) action=edited updates title [0.40ms]
+@repo/backend test: (pass) action=converted_to_draft sets draft=1 [0.29ms]
+@repo/backend test: (pass) action=ready_for_review sets draft=0 [0.48ms]
+@repo/backend test: (pass) action=closed sets state=closed and stores closed_at + merged_at [0.21ms]
+@repo/backend test: (pass) action=closed without merge stores closed_at and leaves merged_at null [0.28ms]
+@repo/backend test: (pass) action=reopened sets state=open and clears closed_at + merged_at [0.28ms]
+@repo/backend test: (pass) action=labeled returns 'ignored' and writes no row [0.07ms]
+@repo/backend test: (pass) action=assigned (any non-allowed) returns 'ignored' [0.23ms]
+@repo/backend test: (pass) org mismatch returns 'rejected' and writes no row
+@repo/backend test: (pass) event for repo not in repository table returns 'ignored' [0.23ms]
+@repo/backend test: (pass) event for repo with active=0 returns 'ignored' [0.10ms]
+@repo/backend test: (pass) ghost user (id=10137) NEW PR returns 'rejected' and writes no row [0.09ms]
+@repo/backend test: (pass) ghost user (id=10137) EXISTING PR is allowed to update [0.18ms]
+@repo/backend test: (pass) ordering fence: out-of-order opened-after-closed leaves state=closed [0.17ms]
+@repo/backend test: (pass) ordering fence: equal updated_at returns 'stale' (>= comparison) [0.09ms]
+@repo/backend test: (pass) upsertPullRequestFromRestPayload inserts open PR from REST [0.47ms]
+@repo/backend test: (pass) upsertPullRequestFromRestPayload inserts closed PR with state=closed [0.24ms]
+@repo/backend test: (pass) upsertPullRequestFromRestPayload skips ghost user NEW PR [0.14ms]
+@repo/backend test: (pass) upsertPullRequestFromRestPayload applies ghost user to EXISTING PR [0.21ms]
+@repo/backend test: (pass) upsertPullRequestFromRestPayload honors ordering fence [0.17ms]
+@repo/backend test: (pass) opened action upserts the author into person [0.18ms]
+@repo/backend test: (pass) person upsert refreshes login + avatar_url on conflict [0.18ms]
+@repo/backend test: 
+@repo/backend test:  24 pass
+@repo/backend test:  0 fail
+@repo/backend test:  61 expect() calls
+@repo/backend test: Ran 24 tests across 1 file. [23.00ms]
+@repo/backend test: Exited with code 0

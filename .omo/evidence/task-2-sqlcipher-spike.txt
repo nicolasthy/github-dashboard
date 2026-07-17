@@ -1,0 +1,47 @@
+# T2 SQLCipher spike — evidence
+# date: 2026-06-14T09:41:56Z
+# host: Darwin 25.5.0 arm64
+# bun: 1.3.11
+# command: bun --filter @repo/backend run spike:sqlcipher
+# --- BEGIN OUTPUT ---
+@repo/backend spike:sqlcipher: ── memory DB smoke ──
+@repo/backend spike:sqlcipher: 
+@repo/backend spike:sqlcipher: ── SPIKE FAILED ──
+@repo/backend spike:sqlcipher: code=ERR_DLOPEN_FAILED
+@repo/backend spike:sqlcipher: message='better-sqlite3' is not yet supported in Bun.
+@repo/backend spike:sqlcipher: Track the status in https://github.com/oven-sh/bun/issues/4290
+@repo/backend spike:sqlcipher: In the meantime, you could try bun:sqlite which has a similar API.
+@repo/backend spike:sqlcipher: 
+@repo/backend spike:sqlcipher: BLOCKED: Bun cannot load the better-sqlite3 family of native bindings.
+@repo/backend spike:sqlcipher: Root cause: better-sqlite3 (and its fork better-sqlite3-multiple-ciphers)
+@repo/backend spike:sqlcipher: uses V8 C++ APIs that Bun's runtime does not implement. Bun's loader
+@repo/backend spike:sqlcipher: defensively blocks better_sqlite3.node to avoid a segfault.
+@repo/backend spike:sqlcipher: 
+@repo/backend spike:sqlcipher: Upstream tracking: https://github.com/oven-sh/bun/issues/4290
+@repo/backend spike:sqlcipher: See: docs/encryption.md → 'Runtime compatibility (BLOCKER)'.
+@repo/backend spike:sqlcipher: 107 |         return opts[p] || p;
+@repo/backend spike:sqlcipher: 108 |       })
+@repo/backend spike:sqlcipher: 109 |     );
+@repo/backend spike:sqlcipher: 110 |     tries.push(n);
+@repo/backend spike:sqlcipher: 111 |     try {
+@repo/backend spike:sqlcipher: 112 |       b = opts.path ? requireFunc.resolve(n) : requireFunc(n);
+@repo/backend spike:sqlcipher:                                                      ^
+@repo/backend spike:sqlcipher: error: 'better-sqlite3' is not yet supported in Bun.
+@repo/backend spike:sqlcipher: Track the status in https://github.com/oven-sh/bun/issues/4290
+@repo/backend spike:sqlcipher: In the meantime, you could try bun:sqlite which has a similar API.
+@repo/backend spike:sqlcipher:  code: "ERR_DLOPEN_FAILED"
+@repo/backend spike:sqlcipher: 
+@repo/backend spike:sqlcipher:       at bindings (/Users/nicolas.thiry/Developer/personal/github-dashboard/node_modules/.bun/bindings@1.5.0/node_modules/bindings/bindings.js:112:48)
+@repo/backend spike:sqlcipher:       at new Database (/Users/nicolas.thiry/Developer/personal/github-dashboard/node_modules/.bun/better-sqlite3-multiple-ciphers@12.10.0/node_modules/better-sqlite3-multiple-ciphers/lib/database.js:48:29)
+@repo/backend spike:sqlcipher:       at openEncrypted (/Users/nicolas.thiry/Developer/personal/github-dashboard/apps/backend/bin/spike-sqlcipher.ts:50:14)
+@repo/backend spike:sqlcipher:       at runSpike (/Users/nicolas.thiry/Developer/personal/github-dashboard/apps/backend/bin/spike-sqlcipher.ts:65:15)
+@repo/backend spike:sqlcipher:       at /Users/nicolas.thiry/Developer/personal/github-dashboard/apps/backend/bin/spike-sqlcipher.ts:127:3
+@repo/backend spike:sqlcipher:       at loadAndEvaluateModule (2:1)
+@repo/backend spike:sqlcipher: 
+@repo/backend spike:sqlcipher: Bun v1.3.11 (macOS arm64)
+@repo/backend spike:sqlcipher: Exited with code 1
+# --- END OUTPUT ---
+# exit: 1
+
+# verdict: BLOCKED — Bun 1.3.11 cannot dlopen better_sqlite3.node (uses V8 C++ APIs)
+# next: see docs/encryption.md 'Runtime compatibility (BLOCKER)' for recovery paths

@@ -1,0 +1,70 @@
+
+   • Packages in scope: @repo/backend, @repo/types
+   • Running test in 2 packages
+   • Remote caching disabled
+
+@repo/types:test: cache hit, replaying logs f0060a10ed5c62d2
+@repo/types:test: $ bun test
+@repo/types:test: bun test v1.3.11 (af24e281)
+@repo/types:test: 
+@repo/types:test: src/__tests__/brand.test.ts:
+@repo/types:test: (pass) asUserId creates valid branded type [0.07ms]
+@repo/types:test: (pass) asUserId rejects non-positive integers [0.08ms]
+@repo/types:test: (pass) brand types are incompatible at compile time [0.12ms]
+@repo/types:test: 
+@repo/backend:test: cache hit, replaying logs ef1e21b1d9815e79
+@repo/types:test:  3 pass
+@repo/types:test:  0 fail
+@repo/types:test:  5 expect() calls
+@repo/types:test: Ran 3 tests across 1 file. [13.00ms]
+@repo/backend:test: $ bun test
+@repo/backend:test: bun test v1.3.11 (af24e281)
+@repo/backend:test: 
+@repo/backend:test: src/webhook/verify.test.ts:
+@repo/backend:test: (pass) valid signature returns true [0.97ms]
+@repo/backend:test: (pass) off-by-one-byte signature returns false [0.19ms]
+@repo/backend:test: (pass) missing header returns false (no throw)
+@repo/backend:test: (pass) wrong secret returns false
+@repo/backend:test: (pass) malformed prefix returns false [0.02ms]
+@repo/backend:test: 
+@repo/backend:test: src/github/client.test.ts:
+@repo/backend:test: (pass) makeClient returns an Octokit instance [0.62ms]
+@repo/backend:test: (pass) listPullsForRepo paginates correctly [0.48ms]
+@repo/backend:test: (pass) listPullsForRepo maps fields correctly [0.10ms]
+@repo/backend:test: (pass) rate-limit hook pauses when remaining < 10 [0.13ms]
+@repo/backend:test: (pass) rate-limit hook does not pause when remaining >= 10 [0.06ms]
+@repo/backend:test: 
+@repo/backend:test: src/__tests__/sanity.test.ts:
+@repo/backend:test: (pass) bun test runs
+@repo/backend:test: (pass) @repo/types cross-workspace import resolves [0.11ms]
+@repo/backend:test: (pass) PR_TRACKER_KEY env detection does not throw [0.06ms]
+@repo/backend:test: 
+@repo/backend:test: src/db/migrate.test.ts:
+@repo/backend:test: (pass) fresh DB creates exactly 8 tables after migration [2.59ms]
+@repo/backend:test: (pass) re-running migrations is a no-op (idempotent) [0.80ms]
+@repo/backend:test: (pass) PRAGMA foreign_keys is ON after setup [0.32ms]
+@repo/backend:test: (pass) CHECK constraint rejects invalid state in pull_request [0.64ms]
+@repo/backend:test: (pass) all 5 indexes are present after migration [0.02ms]
+@repo/backend:test: 
+@repo/backend:test: src/db/connection.test.ts:
+@repo/backend:test: (pass) open() returns a working Database [1.01ms]
+@repo/backend:test: (pass) open() enables WAL mode [0.61ms]
+@repo/backend:test: (pass) open() enables foreign keys [0.51ms]
+@repo/backend:test: (pass) selfTest() passes on valid DB [0.39ms]
+@repo/backend:test: 
+@repo/backend:test: src/logging/index.test.ts:
+@repo/backend:test: (pass) drops non-allowlisted fields from log output [0.61ms]
+@repo/backend:test: (pass) log function accepts all allowlisted fields [0.17ms]
+@repo/backend:test: (pass) no network sinks in logging module [0.11ms]
+@repo/backend:test: (pass) log output is valid JSONL [0.20ms]
+@repo/backend:test: (pass) respects LOG_STDERR environment variable [1.03ms]
+@repo/backend:test: 
+@repo/backend:test:  27 pass
+@repo/backend:test:  0 fail
+@repo/backend:test:  63 expect() calls
+@repo/backend:test: Ran 27 tests across 6 files. [45.00ms]
+
+ Tasks:    2 successful, 2 total
+Cached:    2 cached, 2 total
+  Time:    9ms >>> FULL TURBO
+

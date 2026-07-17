@@ -1,0 +1,16 @@
+@repo/backend test: bun test v1.3.11 (af24e281)
+@repo/backend test: 
+@repo/backend test: src/reconcile/index.test.ts:
+@repo/backend test: (pass) empty DB + REST returns 3 open + 2 closed PRs → 5 rows inserted with correct states [3.37ms]
+@repo/backend test: (pass) DB has PR #5 open + REST returns #5 as closed → PR #5 marked closed with closed_at from REST [0.89ms]
+@repo/backend test: (pass) DB has PR #6 open + REST omits #6 entirely → PR #6 marked closed with closed_at = NOW() (fallback drift) [0.56ms]
+@repo/backend test: (pass) empty activeRepos → no work done, repos = 0 [0.24ms]
+@repo/backend test: (pass) missing token (null client) → warning logged, reconcileAll resolves without throw, ReconcileReport.repos = 0 [0.36ms]
+@repo/backend test: (pass) repo_state.last_reconciled_at updated for each reconciled repo [0.39ms]
+@repo/backend test: (pass) per-repo error is caught + logged; subsequent repos still process [0.71ms]
+@repo/backend test: 
+@repo/backend test:  7 pass
+@repo/backend test:  0 fail
+@repo/backend test:  38 expect() calls
+@repo/backend test: Ran 7 tests across 1 file. [25.00ms]
+@repo/backend test: Exited with code 0

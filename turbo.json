@@ -1,0 +1,35 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "globalEnv": [
+    "PR_TRACKER_KEY",
+    "GITHUB_WEBHOOK_SECRET",
+    "GITHUB_RECONCILE_TOKEN",
+    "GITHUB_ORG",
+    "TRACKED_REPOS_PATH",
+    "PR_TRACKER_DB",
+    "LOG_STDERR",
+    "LOG_PATH"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "inputs": ["$TURBO_DEFAULT$", "tsconfig*.json"]
+    },
+    "//#lint": {
+      "inputs": ["$TURBO_DEFAULT$", "biome.json"]
+    },
+    "//#check": {
+      "inputs": ["$TURBO_DEFAULT$", "biome.json"]
+    },
+    "//#format": { "cache": false }
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "schema_version": 2,
+  "active_work_id": "github-pr-tracker-347811af",
+  "works": {
+    "github-pr-tracker-347811af": {
+      "work_id": "github-pr-tracker-347811af",
+      "active_plan": "/Users/nicolas.thiry/Developer/personal/github-dashboard/.omo/plans/github-pr-tracker.md",
+      "plan_name": "github-pr-tracker",
+      "status": "completed",
+      "started_at": "2026-06-14T09:16:20.965Z",
+      "updated_at": "2026-06-14T11:43:41.159Z",
+      "session_ids": [
+        "opencode:ses_13a950db1ffeki188y0QjCOKre"
+      ],
+      "session_origins": {
+        "opencode:ses_13a950db1ffeki188y0QjCOKre": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Monorepo scaffolding (Turborepo + Bun workspaces) + Biome + strict tsconfig + lefthook",
+          "session_id": "opencode:ses_13a8da4bdffeZCSe89IBHRjsXR",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-06-14T09:23:15.987Z",
+          "status": "completed",
+          "updated_at": "2026-06-14T09:25:34.320Z",
+          "ended_at": "2026-06-14T09:25:34.320Z",
+          "elapsed_ms": 138333
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "SQLCipher-under-Bun smoke spike",
+          "session_id": "opencode:ses_13a8c1e28ffeBSrP8R8JD9iVqM",
+          "agent": "Sisyphus-Junior",
+          "category": "deep",
+          "updated_at": "2026-06-14T10:14:57.026Z",
+          "started_at": "2026-06-14T09:44:01.640Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T10:14:57.026Z",
+          "elapsed_ms": 1855386
+        },
+        "todo:8": {
+          "task_key": "todo:8",
+          "task_label": "8",
+          "task_title": "HMAC signature verifier",
+          "session_id": "opencode:ses_13a5bd0caffe8qNzpLcbLSqfAo",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-06-14T10:29:32.214Z",
+          "started_at": "2026-06-14T10:28:09.688Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T10:29:32.214Z",
+          "elapsed_ms": 82526
+        },
+        "todo:9": {
+          "task_key": "todo:9",
+          "task_label": "9",
+          "task_title": "Delivery dedup store",
+          "session_id": "opencode:ses_13a4fb3e5ffebd8HWQXOOo640t",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-06-14T10:31:59.290Z",
+          "status": "completed",
+          "updated_at": "2026-06-14T10:39:23.415Z",
+          "ended_at": "2026-06-14T10:39:23.415Z",
+          "elapsed_ms": 444125
+        },
+        "todo:13": {
+          "task_key": "todo:13",
+          "task_label": "13",
+          "task_title": "Webhook HTTP server",
+          "session_id": "opencode:ses_13a481435ffe4kYg7Xc5cwLMeR",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-06-14T11:03:02.298Z",
+          "started_at": "2026-06-14T10:59:01.347Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T11:03:02.298Z",
+          "elapsed_ms": 240951
+        },
+        "todo:20": {
+          "task_key": "todo:20",
+          "task_label": "20",
+          "task_title": "Read API HTTP server (4 routes, both lifecycles)",
+          "session_id": "opencode:ses_13a3256e2ffekyfqmvO3pgTChJ",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-06-14T11:12:39.976Z",
+          "started_at": "2026-06-14T11:12:23.372Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T11:12:39.976Z",
+          "elapsed_ms": 16604
+        },
+        "todo:22": {
+          "task_key": "todo:22",
+          "task_label": "22",
+          "task_title": "Process entrypoint + signal handling",
+          "session_id": "opencode:ses_13a29ce17ffeynyyEXE0Di9cci",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-06-14T11:24:52.415Z",
+          "started_at": "2026-06-14T11:24:36.172Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T11:24:52.415Z",
+          "elapsed_ms": 16243
+        },
+        "todo:23": {
+          "task_key": "todo:23",
+          "task_label": "23",
+          "task_title": "Inline write-path bench",
+          "session_id": "opencode:ses_13a1e9aeaffex3QWwttlnEFqUV",
+          "agent": "Sisyphus-Junior",
+          "category": "deep",
+          "updated_at": "2026-06-14T11:33:03.847Z",
+          "started_at": "2026-06-14T11:32:34.665Z",
+          "status": "completed",
+          "ended_at": "2026-06-14T11:33:03.847Z",
+          "elapsed_ms": 29182
+        },
+        "final-wave:f1": {
+          "task_key": "final-wave:f1",
+          "task_label": "F1",
+          "task_title": "**Plan Compliance Audit** — `oracle`",
+          "session_id": "opencode:ses_13a116135ffe6Yqke4XDM0Yn9W",
+          "agent": "oracle",
+          "started_at": "2026-06-14T11:35:57.476Z",
+          "status": "completed",
+          "updated_at": "2026-06-14T11:41:47.418Z",
+          "ended_at": "2026-06-14T11:41:47.418Z",
+          "elapsed_ms": 349942
+        }
+      },
+      "ended_at": "2026-06-14T11:43:41.159Z",
+      "elapsed_ms": 8840194
+    }
+  },
+  "active_plan": "/Users/nicolas.thiry/Developer/personal/github-dashboard/.omo/plans/github-pr-tracker.md",
+  "started_at": "2026-06-14T09:16:20.965Z",
+  "status": "completed",
+  "updated_at": "2026-06-14T11:43:41.159Z",
+  "session_ids": [
+    "opencode:ses_13a950db1ffeki188y0QjCOKre"
+  ],
+  "session_origins": {
+    "opencode:ses_13a950db1ffeki188y0QjCOKre": "direct"
+  },
+  "plan_name": "github-pr-tracker",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Monorepo scaffolding (Turborepo + Bun workspaces) + Biome + strict tsconfig + lefthook",
+      "session_id": "opencode:ses_13a8da4bdffeZCSe89IBHRjsXR",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "started_at": "2026-06-14T09:23:15.987Z",
+      "status": "completed",
+      "updated_at": "2026-06-14T09:25:34.320Z",
+      "ended_at": "2026-06-14T09:25:34.320Z",
+      "elapsed_ms": 138333
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "SQLCipher-under-Bun smoke spike",
+      "session_id": "opencode:ses_13a8c1e28ffeBSrP8R8JD9iVqM",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-06-14T10:14:57.026Z",
+      "started_at": "2026-06-14T09:44:01.640Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T10:14:57.026Z",
+      "elapsed_ms": 1855386
+    },
+    "todo:8": {
+      "task_key": "todo:8",
+      "task_label": "8",
+      "task_title": "HMAC signature verifier",
+      "session_id": "opencode:ses_13a5bd0caffe8qNzpLcbLSqfAo",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-06-14T10:29:32.214Z",
+      "started_at": "2026-06-14T10:28:09.688Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T10:29:32.214Z",
+      "elapsed_ms": 82526
+    },
+    "todo:9": {
+      "task_key": "todo:9",
+      "task_label": "9",
+      "task_title": "Delivery dedup store",
+      "session_id": "opencode:ses_13a4fb3e5ffebd8HWQXOOo640t",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "started_at": "2026-06-14T10:31:59.290Z",
+      "status": "completed",
+      "updated_at": "2026-06-14T10:39:23.415Z",
+      "ended_at": "2026-06-14T10:39:23.415Z",
+      "elapsed_ms": 444125
+    },
+    "todo:13": {
+      "task_key": "todo:13",
+      "task_label": "13",
+      "task_title": "Webhook HTTP server",
+      "session_id": "opencode:ses_13a481435ffe4kYg7Xc5cwLMeR",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-06-14T11:03:02.298Z",
+      "started_at": "2026-06-14T10:59:01.347Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T11:03:02.298Z",
+      "elapsed_ms": 240951
+    },
+    "todo:20": {
+      "task_key": "todo:20",
+      "task_label": "20",
+      "task_title": "Read API HTTP server (4 routes, both lifecycles)",
+      "session_id": "opencode:ses_13a3256e2ffekyfqmvO3pgTChJ",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-06-14T11:12:39.976Z",
+      "started_at": "2026-06-14T11:12:23.372Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T11:12:39.976Z",
+      "elapsed_ms": 16604
+    },
+    "todo:22": {
+      "task_key": "todo:22",
+      "task_label": "22",
+      "task_title": "Process entrypoint + signal handling",
+      "session_id": "opencode:ses_13a29ce17ffeynyyEXE0Di9cci",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-06-14T11:24:52.415Z",
+      "started_at": "2026-06-14T11:24:36.172Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T11:24:52.415Z",
+      "elapsed_ms": 16243
+    },
+    "todo:23": {
+      "task_key": "todo:23",
+      "task_label": "23",
+      "task_title": "Inline write-path bench",
+      "session_id": "opencode:ses_13a1e9aeaffex3QWwttlnEFqUV",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-06-14T11:33:03.847Z",
+      "started_at": "2026-06-14T11:32:34.665Z",
+      "status": "completed",
+      "ended_at": "2026-06-14T11:33:03.847Z",
+      "elapsed_ms": 29182
+    },
+    "final-wave:f1": {
+      "task_key": "final-wave:f1",
+      "task_label": "F1",
+      "task_title": "**Plan Compliance Audit** — `oracle`",
+      "session_id": "opencode:ses_13a116135ffe6Yqke4XDM0Yn9W",
+      "agent": "oracle",
+      "started_at": "2026-06-14T11:35:57.476Z",
+      "status": "completed",
+      "updated_at": "2026-06-14T11:41:47.418Z",
+      "ended_at": "2026-06-14T11:41:47.418Z",
+      "elapsed_ms": 349942
+    }
+  },
+  "agent": "atlas",
+  "ended_at": "2026-06-14T11:43:41.159Z",
+  "elapsed_ms": 8840194
+}

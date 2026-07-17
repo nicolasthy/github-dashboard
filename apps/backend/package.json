@@ -1,0 +1,25 @@
+{
+  "name": "@repo/backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun src/index.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "bench:webhook": "bun bin/bench-webhook.ts",
+    "migrate": "bun src/db/migrate.ts",
+    "token": "bun bin/token.ts",
+    "spike:sqlcipher": "bun bin/spike-sqlcipher.ts"
+  },
+  "dependencies": {
+    "@octokit/rest": "21.x",
+    "@repo/types": "workspace:*",
+    "argon2": "0.x",
+    "better-sqlite3-multiple-ciphers": "12.10.0",
+    "yaml": "2.x"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "5.x"
+  }
+}

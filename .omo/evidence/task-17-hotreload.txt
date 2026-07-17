@@ -1,0 +1,14 @@
+@repo/backend test: bun test v1.3.11 (af24e281)
+@repo/backend test: 
+@repo/backend test: src/config/watcher.test.ts:
+@repo/backend test: (pass) direct write triggers onChange within 2s [619.13ms]
+@repo/backend test: (pass) atomic rename triggers onChange within 2s [722.29ms]
+@repo/backend test: (pass) invalid config YAML does not call onChange (keeps last-good) [1302.50ms]
+@repo/backend test: (pass) debounce: 5 rapid writes result in at most 2 onChange calls [1607.02ms]
+@repo/backend test: (pass) stop() cancels in-flight debounce and prevents onChange from firing [1304.22ms]
+@repo/backend test: 
+@repo/backend test:  5 pass
+@repo/backend test:  0 fail
+@repo/backend test:  9 expect() calls
+@repo/backend test: Ran 5 tests across 1 file. [5.61s]
+@repo/backend test: Exited with code 0

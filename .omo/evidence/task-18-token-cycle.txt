@@ -1,0 +1,14 @@
+@repo/backend test: bun test v1.3.11 (af24e281)
+@repo/backend test: 
+@repo/backend test: src/auth/token-store.test.ts:
+@repo/backend test: (pass) issued plaintext verifies via verifyToken [38.99ms]
+@repo/backend test: (pass) wrong plaintext returns null [35.17ms]
+@repo/backend test: (pass) revoked token returns null on verify [18.04ms]
+@repo/backend test: (pass) stored hash contains argon2id params [17.12ms]
+@repo/backend test: (pass) listTokens returns tokens without hash field [33.44ms]
+@repo/backend test: 
+@repo/backend test:  5 pass
+@repo/backend test:  0 fail
+@repo/backend test:  16 expect() calls
+@repo/backend test: Ran 5 tests across 1 file. [169.00ms]
+@repo/backend test: Exited with code 0

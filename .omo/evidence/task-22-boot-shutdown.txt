@@ -1,0 +1,42 @@
+T22: Process entrypoint + signal handling — Boot/Shutdown Evidence
+Date: 2026-06-14
+File: apps/backend/src/index.ts
+
+=== CI GATES ===
+bun turbo test       → 122 pass, 0 fail (all 17 test files)
+bun turbo typecheck  → exit 0
+bun turbo check      → exit 0 (Biome, 53 files checked)
+
+=== BOOT TEST RESULTS ===
+
+--- TEST 1: missing GITHUB_WEBHOOK_SECRET ---
+Command: bun apps/backend/src/index.ts (no env vars)
+exit=1
+stderr=Missing required env var: GITHUB_WEBHOOK_SECRET
+PASS: exits 1 with named error
+
+--- TEST 2: missing GITHUB_ORG ---
+Command: GITHUB_WEBHOOK_SECRET=test-secret bun apps/backend/src/index.ts
+exit=1
+stderr=Missing required env var: GITHUB_ORG
+PASS: exits 1 with named error
+
+--- TEST 3: valid boot + SIGTERM ---
+Command: PR_TRACKER_DB=/tmp/... GITHUB_WEBHOOK_SECRET=test-secret GITHUB_ORG=test-org
+         LOG_STDERR=1 TRACKED_REPOS_PATH=<valid yaml> bun apps/backend/src/index.ts
+         [sleep 3s, then kill -TERM]
+SIGTERM exit=0
+Log output (JSONL):
+  {"ts":"2026-06-14T11:23:24.764Z","level":"warn","msg":"reconciliation skipped: no GITHUB_RECONCILE_TOKEN","event":"reconcile","outcome":"ignored"}
+  {"ts":"2026-06-14T11:23:24.769Z","level":"info","msg":"startup","event":"startup","status":200}
+  {"ts":"2026-06-14T11:23:24.769Z","level":"info","msg":"reconciliation complete","event":"reconcile","outcome":"applied","duration_ms":1}
+  {"ts":"2026-06-14T11:23:27.659Z","level":"info","msg":"shutdown","event":"shutdown","reason_code":"SIGTERM"}
+PASS: boot < 3s, startup logged, SIGTERM → exit 0 within 5s
+
+=== ACCEPTANCE CRITERIA ===
+[x] Boots in < 3s on a small DB (startup at T+0ms after env check)
+[x] Missing env var → exits 1 with named error within 200ms
+[x] SIGTERM → both servers stop, DB closes, exit 0 within 5s
+[x] After boot, log contains exactly one event=startup line
+[x] reconciliation completes non-blocking (logged after startup)
+[x] GITHUB_RECONCILE_TOKEN absent → graceful skip (warn logged)
